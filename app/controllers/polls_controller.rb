@@ -3,7 +3,7 @@ class PollsController < ApplicationController
   authorize_resource except: [:index, :show]
 
   def index
-    @polls = Poll.all
+    @polls = Poll.order(ended_at: :desc)
   end
 
   def show
