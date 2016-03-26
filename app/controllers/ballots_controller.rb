@@ -15,14 +15,14 @@ class BallotsController < ApplicationController
   def create
     current = Poll.current
     if current
-      @ballot = current.ballots.new(user_id: current_user.id, beer_id: @beer.id)
-      if @ballot.save
-        flash[:success] = "You have successfully voted for #{ @beer.name }"
-        redirect_to ballots_path
+      existing_ballot = current_user.ballots.find_by poll: current 
+      if  existing_ballot
+        existing_ballot.update!(beer_id: @beer.id)
       else
-        flash[:danger] = "Could not create a new vote for you :( "
-        render :new
+        current.ballots.create!(user_id: current_user.id, beer_id: @beer.id)
       end
+      flash[:success] = "You have successfully voted for #{ @beer.name }"
+      redirect_to ballots_path
     end
   end
 
