@@ -15,9 +15,9 @@ class BallotsController < ApplicationController
   def create
     current = Poll.current
     if current
-      existing_ballot = current_user.ballots.find_by poll: current 
-      if  existing_ballot
-        existing_ballot.update!(beer_id: @beer.id)
+      @existing_ballot = current_user.ballots.find_by poll: current 
+      if  @existing_ballot
+        @existing_ballot.update!(beer_id: @beer.id)
       else
         current.ballots.create!(user_id: current_user.id, beer_id: @beer.id)
       end

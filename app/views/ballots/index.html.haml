@@ -1,5 +1,10 @@
 %h1 Poll details
 -poll = Poll.last
+.voted_img
+  -if (defined?(@existing_ballot)).nil?
+    = image_tag "voted.png", class: "voted_img"
+-if poll.open? && can?(:edit, @existing_ballot)
+  = link_to "Edit", edit_ballot_path(@existing_ballot)
 .poll-navigation
   -if poll && poll.previous
     =link_to '< Previous poll', ballots_path, class: "chart-link previous", "data-poll_id" => poll.previous.id
