@@ -7,9 +7,14 @@
   margin-top: 1em;
 }
 
-.voted_img {
+.voted_img img{
+  display: block;  
+  height: 80px;
+  width: 80px;
+  margin-left: 80%;
+}
+.voted_img a {
   display: block;
-  margin-left: 60%;  
-  margin-buttom: 50px;
- 
+  margin-left: 80%;  
+  height: 60px;
 }
