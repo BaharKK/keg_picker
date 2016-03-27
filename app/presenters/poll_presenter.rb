@@ -16,4 +16,9 @@ class PollPresenter < SimpleDelegator
   def highest_vote_count
     piechart_data.values.max
   end
+
+  def number_of_days_opened 
+    difference_in_days = (@poll.ended_at - @poll.created_at).to_i
+    (difference_in_days/365.25).to_i
+  end
 end

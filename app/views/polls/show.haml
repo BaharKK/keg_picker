@@ -1,4 +1,5 @@
 %h1= "Poll ##{@poll.id}"
-
 - poll_presenter = PollPresenter.new(@poll)
+- if @poll.closed
+  %p= "Poll closed: #{@poll.ended_at.strftime('%m/%d/%Y')} | Poll was open for: #{poll_presenter.number_of_days_opened} days | Votes: #{@poll.ballots.count}"
 = render "shared/chart", poll: poll_presenter
