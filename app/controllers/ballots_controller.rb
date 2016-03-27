@@ -2,7 +2,9 @@ class BallotsController < ApplicationController
   before_filter :load_beer, only: [:create]
   before_filter :load_ballot, only: [:show, :edit, :update, :destroy]
   before_filter :load_all_beers, only: [:new, :edit, :create]
+  before_filter :restrict_voting, only: [:create]
   authorize_resource
+
 
   def index
     @ballots = Ballot.all
@@ -18,7 +20,7 @@ class BallotsController < ApplicationController
 
   def create
     current = Poll.current
-    if current
+    if current 
       @existing_ballot = current_user.ballots.find_by poll: current 
       if  @existing_ballot
         @existing_ballot.update!(beer_id: @beer.id)

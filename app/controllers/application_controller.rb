@@ -14,5 +14,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
+  def restrict_voting
+    if !current_user
+      flash[:alert] = "You must Log in or Sign up to Vote"
+      redirect_to root_url
+    end
+  end
 
 end
