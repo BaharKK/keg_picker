@@ -7,7 +7,7 @@
       %th
     - poll.ballots.each do |ballot|
       %tr
-        %td= "#{ballot.beer.brewery} #{ballot.beer.name}"
+        %td= "#{ballot.beer.display_name}"
         %td= ballot.user.username
         %td
           - if poll.open? && can?(:edit, ballot)

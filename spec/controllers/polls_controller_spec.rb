@@ -26,10 +26,16 @@ RSpec.describe PollsController, type: :controller do
 
   describe "PATCH update"do
     let(:poll) { FactoryGirl.create(:poll) }
-    subject { put :update, id: poll.to_param, closed: true, ended_at: Time.now }
+    subject do
+      put :update,
+      id: poll.id,
+      poll: {
+        closed: true, ended_at: Time.now
+      }
+    end
 
     it "updates the poll" do
-      expect { subject }.to change { poll.reload.closed}.to(true)
+      expect { subject }.to change { poll.reload.closed }.to(true)
     end
 
     it "updates the ended_at attribute" do

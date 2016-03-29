@@ -3,7 +3,7 @@ class BeersController < ApplicationController
   before_action :load_beer, only: [:edit, :show, :destroy, :update]
 
   def index
-    @beers = Beer.all
+    @beers = Beer.order(:brewery).order(:name)
   end
 
   def new
@@ -40,7 +40,7 @@ class BeersController < ApplicationController
   private
 
   def beer_params
-    params.require(:beer).permit(:brewery, :name)
+    params.require(:beer).permit(:brewery, :name, :style)
   end
 
   def load_beer

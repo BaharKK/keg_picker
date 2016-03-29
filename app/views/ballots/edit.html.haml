@@ -2,7 +2,7 @@
 
 %h1 Changed your mind?
 = form_tag(ballot_path(@ballot), method: :put) do
-  = select_tag "beer_id", options_from_collection_for_select(@beers, "id", -> (beer) { "#{beer.brewery} #{beer.name}" }), class: "form-control"
+  = select_tag "beer_id", options_from_collection_for_select(@beers, "id", -> (beer) { "#{beer.display_name}" }), class: "form-control"
 
   .action-links
     = submit_tag "Vote", class: "btn"

@@ -9,7 +9,7 @@
       %th
   -@beers.each do |beer|
     %tr
-      %td= "#{beer.brewery} #{beer.name}"
+      %td= "#{beer.display_name}"
       %td
         = link_to "Delete", beer_path(beer), method: :delete, data: { confirm: "Are you sure you want to delete this beer?" }
       %td
