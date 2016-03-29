@@ -1,3 +1,9 @@
+.voted-img
+  -if defined?(@existing_ballot)
+    = image_tag "voted.png", class: "voted-img"
+  -if @poll.open? && can?(:edit, @existing_ballot)
+    = link_to "Edit Vote", edit_ballot_path(@existing_ballot)
+
 %h2 Choose Our Next Beer
 
 %p

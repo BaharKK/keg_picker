@@ -5,15 +5,6 @@ class BallotsController < ApplicationController
   before_filter :restrict_voting, only: [:create]
   authorize_resource
 
-
-  def index
-    @ballots = Ballot.all
-    current = Poll.current
-    if current
-      @existing_ballot = current_user.ballots.find_by poll: current 
-    end
-  end
-
   def new
     @ballot = Ballot.new
   end
